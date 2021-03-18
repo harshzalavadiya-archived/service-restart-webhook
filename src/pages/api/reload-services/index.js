@@ -6,8 +6,8 @@ export default (req, res) => {
     req.body.authorization === process.env.AUTH_KEY &&
     req.query.alertTypeFriendlyName === "Down"
   ) {
+    sendNotification(`restarting services`);
     restartServices();
-    sendNotification();
     res.status(200).json({ success: true });
   } else {
     res.status(401).json({ success: false });
